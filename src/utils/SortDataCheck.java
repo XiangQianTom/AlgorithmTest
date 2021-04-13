@@ -18,11 +18,11 @@ public class SortDataCheck {
     public void check(int arrSize, int testSize, BaseSort sort) {
         boolean check = true;
         for (int i = 0; i < testSize; i++) {
-            arrSize = getArrSize(arrSize);
-            int[] originalArr = getRandomArr(arrSize);
-            int[] selfSortArr = new int[arrSize];
-            int[] systemSortArr = new int[arrSize];
-            check = copyArrAndCheck(arrSize, sort, originalArr, selfSortArr, systemSortArr);
+            int size = getArrSize(arrSize);
+            int[] originalArr = getRandomArr(size);
+            int[] selfSortArr = new int[size];
+            int[] systemSortArr = new int[size];
+            check = copyArrAndCheck(size, sort, originalArr, selfSortArr, systemSortArr);
             if (!check) {
                 System.out.println("测试第" + i + "次后失败，原始数组：");
                 PrintUtils.printArr(originalArr);
