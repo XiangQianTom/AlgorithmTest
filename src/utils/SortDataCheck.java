@@ -7,6 +7,10 @@ import java.util.Random;
 
 public class SortDataCheck {
 
+    public static SortDataCheck getChecker() {
+        return new SortDataCheck();
+    }
+
     public void check(BaseSort sort) {
         check(-1, 10000, sort);
     }
@@ -24,13 +28,12 @@ public class SortDataCheck {
             int[] systemSortArr = new int[size];
             check = copyArrAndCheck(size, sort, originalArr, selfSortArr, systemSortArr);
             if (!check) {
-                System.out.println("测试第" + i + "次后失败，原始数组：");
-                PrintUtils.printArr(originalArr);
-                System.out.println("自己排序：");
-                PrintUtils.printArr(selfSortArr);
+                printOriginalSelfSoft(i, size, originalArr, selfSortArr);
                 System.out.println("系统排序：");
                 PrintUtils.printArr(systemSortArr);
                 break;
+            } else {
+                printOriginalSelfSoft(i, size, originalArr, selfSortArr);
             }
         }
         if (check) {
@@ -38,12 +41,19 @@ public class SortDataCheck {
         }
     }
 
+    private void printOriginalSelfSoft(int i, int size, int[] originalArr, int[] selfSortArr) {
+        System.out.println("测试第" + i + "次，数组长度：" + size + " 原始数组：");
+        PrintUtils.printArr(originalArr);
+        System.out.println("自己排序：");
+        PrintUtils.printArr(selfSortArr);
+    }
+
     private int getArrSize(int arrSize) {
-        if (arrSize > 0) {
-            return arrSize;
-        }
         Random random = new Random();
-        return random.nextInt(20);
+        if (arrSize < 0) {
+            arrSize = 20;
+        }
+        return random.nextInt(arrSize);
     }
 
     private boolean copyArrAndCheck(int arrSize, BaseSort sort, int[] originalArr, int[] selfSortArr, int[] systemSortArr) {
