@@ -51,9 +51,9 @@ public class SortDataCheck {
     private int getArrSize(int arrSize) {
         Random random = new Random();
         if (arrSize < 0) {
-            arrSize = 20;
+            return 20;
         }
-        return random.nextInt(arrSize);
+        return random.nextInt(arrSize) + 2;
     }
 
     private boolean copyArrAndCheck(int arrSize, BaseSort sort, int[] originalArr, int[] selfSortArr, int[] systemSortArr) {
