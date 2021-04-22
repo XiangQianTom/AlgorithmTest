@@ -7,8 +7,15 @@ import java.util.Random;
 
 public class SortDataCheck {
 
+    private int arrChildBound = 10000;
+
     public static SortDataCheck getChecker() {
         return new SortDataCheck();
+    }
+
+    public SortDataCheck updateArrChildBound(int arrChildBound) {
+        this.arrChildBound = arrChildBound;
+        return this;
     }
 
     public void check(BaseSort sort) {
@@ -84,7 +91,7 @@ public class SortDataCheck {
         Random random = new Random();
         int[] arr = new int[arrSize];
         for (int i = 0; i < arrSize; i++) {
-            arr[i] = random.nextInt(10000);
+            arr[i] = random.nextInt(arrChildBound);
         }
         return arr;
     }
